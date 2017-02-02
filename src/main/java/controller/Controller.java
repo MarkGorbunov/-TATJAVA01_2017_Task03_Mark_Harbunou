@@ -1,17 +1,19 @@
 package controller;
 
-import controller.exception.ControllerException;
-
 /**
  * Created by Mark_Harbunou on 2/1/2017.
  */
 public class Controller {
     private final CommandProvider provider = new CommandProvider();
     private final char paramDelimeter = ' ';
-    public String executeTask(String request) throws ControllerException {
+    public String executeTask(String request) {
         String commandName;
         Command executionCommand;
-        commandName = request.substring(0, request.indexOf(paramDelimeter));
+        String[] splittedRequest = request.split(" ");
+        if(splittedRequest.length <= 3) {
+            return "incorrect amounts of parameters";
+        }
+        commandName = splittedRequest[0];
         executionCommand = provider.getCommand(commandName);
         String response;
         response = executionCommand.execute(request);

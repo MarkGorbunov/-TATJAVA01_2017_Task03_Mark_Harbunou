@@ -1,13 +1,20 @@
 import controller.Controller;
-import controller.exception.ControllerException;
 
 public class Main {
 
-    public static void main(String[] args) throws ControllerException {
+    public static void main(String[] args) {
         Controller controller = new Controller();
-        controller.executeTask("ADD_NEWS books life Mark");
-        controller.executeTask("ADD_NEWS BOOKS life Mark1");
-        controller.executeTask("ADD_NEWS BOOKS life Mark2");
-	// write your code here
+        System.out.println(controller.executeTask("lol books life Mark"));
+        System.out.println(controller.executeTask("ADD_NEWS BOOKS life Mark1"));
+        System.out.println(controller.executeTask("ADD_NEWS BOOKS life Mark2"));
+        System.out.println(controller.executeTask("FIND_NEWS BOOKS life Mark2"));
+        System.out.println(controller.executeTask("FIND_NEWS books life Mark2"));
+        System.out.println(controller.executeTask("FIND_NEWS books lif Mark2"));
+        System.out.println(controller.executeTask("FIND_NEWS books life Mar"));
+        System.out.println(controller.executeTask("FIND_NEWS"));
+        System.out.println(controller.executeTask("ADD_NEWS BOOKS Mark1"));
+        System.out.println(controller.executeTask("1"));
+        System.out.println(controller.executeTask(""));
+
     }
 }
