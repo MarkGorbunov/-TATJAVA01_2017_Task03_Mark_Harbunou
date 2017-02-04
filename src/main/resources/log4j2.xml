@@ -8,10 +8,9 @@
     </Appenders>
 
     <Loggers>
-        <Logger name= "controller.impl.AddNews" level="debug" additivity="false">
+        <Logger name="controller.impl" level="debug" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
-
         <!-- Root Logger -->
         <Root level="all">
             <AppenderRef ref="Console"/>
