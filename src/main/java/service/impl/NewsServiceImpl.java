@@ -3,6 +3,7 @@ package service.impl;
 import DAO.NewsDAO;
 import DAO.exception.DAOException;
 import DAO.factory.DAOFactory;
+import beans.Category;
 import beans.News;
 import service.NewsService;
 import service.exeption.ServiceException;
@@ -15,25 +16,39 @@ import java.util.ArrayList;
  */
 public class NewsServiceImpl implements NewsService {
     @Override
-    public void addNews(News news) throws ServiceException {
+    public void addNews(String request) throws ServiceException {
         try {
+            Converter converter = new Converter();
+            String[] splittedRequest = request.split(" ");
+            Category category = converter.findCategory(request);
+            String title = splittedRequest[2];
+            String author = splittedRequest[3];
             DAOFactory daoObjectFactory = DAOFactory.getInstance();
             NewsDAO newsDAO = daoObjectFactory.getFileReadNewsImpl();
-            newsDAO.addNews(news);
-        } catch (DAOException e) {
+            newsDAO.addNews(new News(category,title,author));
+        } catch (DAOException | NullPointerException | IllegalArgumentException e) {
             throw new ServiceException();
         }
 
     }
 
     @Override
-    public  String findNews(News news) throws ServiceException{
+    public String findNews(String request) throws ServiceException {
         try {
+            Converter converter = new Converter();
+            String[] splittedRequest = request.split(" ");
+            Category category = converter.findCategory(request);
+            String title = splittedRequest[2];
+            String author = splittedRequest[3];
             DAOFactory daoObjectFactory = DAOFactory.getInstance();
             NewsDAO newsDAO = daoObjectFactory.getFileReadNewsImpl();
-            return newsDAO.findNews(news);
-        } catch (DAOException e) {
+            return newsDAO.findNews(new News(category,title,author));
+        } catch (DAOException | NullPointerException | IllegalArgumentException e) {
             throw new ServiceException();
         }
     }
+
+
+
+
 }

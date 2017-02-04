@@ -5,28 +5,28 @@ import DAO.exception.DAOException;
 import beans.Category;
 import beans.News;
 
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * Created by Mark_Harbunou on 1/30/2017.
  */
 public class FileReadNewsDAO implements NewsDAO {
-    Path pathToFile = Paths.get("C:/Users/Mark_Harbunou/IdeaProjects/NewsProtal1/NEWS.txt");
+    Path pathToFile = Paths.get("E:/project/task3/NEWS.txt");
 
 
     @Override
     public void addNews(News news) throws DAOException {
         try (FileWriter fileWriter = new FileWriter(String.valueOf(pathToFile),true)) {
             fileWriter.write(String.valueOf(news.getCategory()) + " " + news.getTitle() + " " + news.getAuthor() + "\n");
-        } catch (IOException e) {
-            e.getStackTrace();
+        } catch (IOException | NullPointerException | IllegalArgumentException  e) {
+            throw new DAOException();
         }
     }
 
@@ -43,7 +43,7 @@ public class FileReadNewsDAO implements NewsDAO {
                     //findedNews.add((String.valueOf(news.getCategory())) + " " + news.getTitle() + " " + news.getAuthor());
                 }
             }
-        } catch (IOException e) {
+        } catch (IOException | NullPointerException |  java.lang.IllegalArgumentException  e) {
             throw new DAOException();
         }
         throw new DAOException();
