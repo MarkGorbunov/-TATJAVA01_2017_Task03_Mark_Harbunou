@@ -8,11 +8,19 @@ import service.exeption.ServiceException;
 import service.factory.ServiceFactory;
 
 /**
+ * Class that transfer request(add news) to service and return result of adding
+ *
  * Created by Mark_Harbunou on 2/1/2017.
  */
 public class AddNews implements Command {
     final Logger logger = LogManager.getLogger(AddNews.class.getName());
 
+    /**
+     * method that transfer request(add news) to service and return result of adding
+     *
+     * @param request from View
+     * @return result of request
+     */
     @Override
     public String execute(String request) {
         String responce = "";

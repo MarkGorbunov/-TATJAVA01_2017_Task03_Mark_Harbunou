@@ -1,7 +1,13 @@
 import controller.Controller;
 
-public class Main {
-
+/**
+ * Class that imitate user
+ */
+public class View {
+    /**
+     * method that imitate user
+     * @param args
+     */
     public static void main(String[] args) {
         Controller controller = new Controller();
         System.out.println(controller.executeTask("lol books life Mark"));

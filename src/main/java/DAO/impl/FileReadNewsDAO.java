@@ -6,6 +6,7 @@ import beans.Category;
 import beans.News;
 
 
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -15,21 +16,34 @@ import java.nio.file.Paths;
 
 
 /**
+ * Class that work with file
+ *
  * Created by Mark_Harbunou on 1/30/2017.
  */
 public class FileReadNewsDAO implements NewsDAO {
     Path pathToFile = Paths.get("E:/project/task3/NEWS.txt");
 
-
+    /**
+     * method that receive news from service and add it to the file
+     * @param news news for adding
+     * @throws DAOException
+     */
     @Override
     public void addNews(News news) throws DAOException {
         try (FileWriter fileWriter = new FileWriter(String.valueOf(pathToFile),true)) {
             fileWriter.write(String.valueOf(news.getCategory()) + " " + news.getTitle() + " " + news.getAuthor() + "\n");
-        } catch (IOException | NullPointerException | IllegalArgumentException  e) {
+        } catch (IOException | NullPointerException | IllegalArgumentException e) {
             throw new DAOException();
         }
     }
 
+    /**
+     * method that receive news from service and find it in the file
+     *
+     * @param news news for adding
+     * @return found news
+     * @throws DAOException
+     */
     @Override
     public String findNews(News news) throws DAOException {
        // ArrayList<String> findedNews = new ArrayList<>();

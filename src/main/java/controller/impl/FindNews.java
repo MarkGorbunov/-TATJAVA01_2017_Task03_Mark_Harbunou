@@ -11,11 +11,20 @@ import service.factory.ServiceFactory;
 
 
 /**
+ * Class that transfer request(find news) to service and return result of finding
+ *
  * Created by Mark_Harbunou on 2/1/2017.
  */
 public class FindNews implements Command {
     final Logger logger = LogManager.getLogger(FindNews.class.getName());
 
+    /**
+     * method that transfer request(find news)to service and return result of adding
+     *
+     * @param request from View
+     * @return result of request
+     */
+    @Override
     public String execute(String request) {
 
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
